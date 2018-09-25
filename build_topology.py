@@ -123,6 +123,7 @@ def assemble_histogram(path_counts, file_name):
 	plt.legend(loc="upper left");
 	ax1.set_xlabel("Rank of Link")
 	ax1.set_ylabel("# of Distinct Paths Link is on")
+	file_name = 'Figura 9'
 	plt.savefig("plots/%s_plot.png" % file_name)
 
 	

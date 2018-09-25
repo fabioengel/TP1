@@ -1,0 +1,20 @@
+16_2 iperf -s & 
+5_2 iperf -c 16_2 -P 8 -t 10 >> results/ksp_/5_2__16_2.txt &
+2_2 iperf -s & 
+6_2 iperf -c 2_2 -P 8 -t 10 >> results/ksp_/6_2__2_2.txt &
+12_2 iperf -s & 
+0_2 iperf -c 12_2 -P 8 -t 10 >> results/ksp_/0_2__12_2.txt &
+18_2 iperf -s & 
+9_2 iperf -c 18_2 -P 8 -t 10 >> results/ksp_/9_2__18_2.txt &
+13_2 iperf -s & 
+14_2 iperf -c 13_2 -P 8 -t 10 >> results/ksp_/14_2__13_2.txt &
+7_2 iperf -s & 
+17_2 iperf -c 7_2 -P 8 -t 10 >> results/ksp_/17_2__7_2.txt &
+15_2 iperf -s & 
+8_2 iperf -c 15_2 -P 8 -t 10 >> results/ksp_/8_2__15_2.txt &
+10_2 iperf -s & 
+19_2 iperf -c 10_2 -P 8 -t 10 >> results/ksp_/19_2__10_2.txt &
+3_2 iperf -s & 
+11_2 iperf -c 3_2 -P 8 -t 10 >> results/ksp_/11_2__3_2.txt &
+4_2 iperf -s & 
+1_2 iperf -c 4_2 -P 8 -t 10 >> results/ksp_/1_2__4_2.txt &

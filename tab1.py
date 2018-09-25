@@ -22,14 +22,16 @@ def poxMnFt(adjListFile, routingFile):
 	#Start Pox
 	print('')
 	print("Controlador POX Foi iniciado.")
-	command = shlex.split('pox/pox.py riplpox.riplpox --topo=ft,' + str(pods) + ' --routing=hashed --mode=reactive')
+	command = shlex.split('pox/pox.py DCController --topo=ft,'+ str(pods) +' --routing=ECMP')
 
 	with open(os.devnull, "w") as fnull:
 		pPox = Popen(command, stdout=fnull, stderr=fnull)
 		processList.append(pPox)
 
 	print("Mininet será iniciado em uma nova janela.")
-	command = shlex.split('sudo lxterm -e mn --custom ripl/ripl/mn.py --topo ft,'+ str(pods) + ' --controller=remote --mac')
+	#command = shlex.split('sudo lxterm -e mn --custom ripl/ripl/mn.py --topo ft,'+ str(pods) +  ',0.001' +' --controller=remote --mac')
+	#TestF
+	command = shlex.split('sudo lxterm -e mn --custom ripl/ripl/mn.py --topo ft,'+ str(pods) +' --controller=remote --mac --link tc,bw=10,delay=10ms')
 	with open(os.devnull, "w") as fnull:
 		pMininet = Popen(command, stdout=fnull, stderr=fnull)
 		processList.append(pMininet)
@@ -47,7 +49,7 @@ def poxMnJf(numberSwitch, numberPorts, inter_switch_Links, flowsNumber, numHosts
 	
 	print("Mininet será iniciado em uma nova janela.")
 	#Start Mininet
-	command = shlex.split('sudo lxterm -e mn --custom ripl/ripl/mn.py --topo jelly,' + str(numberSwitch) + ','+ str(numberPorts) + ',' + adjListFile + ' --link tc --controller=remote --mac ')
+	command = shlex.split('sudo lxterm -e mn --custom ripl/ripl/mn.py --topo jelly,' + str(numberSwitch) + ','+ str(numberPorts) + ',' + adjListFile + ' --controller=remote --mac --link tc,bw=10,delay=10ms')
 	with open(os.devnull, "w") as fnull:
 		pMininet = Popen(command, stdout=fnull, stderr=fnull)
 		processList.append(pMininet)
@@ -187,7 +189,7 @@ def menuThroughput(directory):
 		
 
 		os.system('clear')
-		print("Digite '1' para verificar o throughput e 0 para 'voltar'")
+		print("Digite '1' para verificar o throughput e '0' para voltar")
 		choiceFlows= int(raw_input(''))
 		if choiceFlows == 1:
 			throughputCalculation(directory)
@@ -258,23 +260,25 @@ def menuJf(numberSwitch, numberPorts, inter_switch_Links, numHosts,adjListFile):
 
 
 def start():
-	print('Mininet sendo reiniciado...')
+	os.system('clear')
+	print('Mininet sendo reiniciado, aguarde 1 segundo...')
+	print('')
+
 	os.system('sudo mn -c')
 	os.system('clear')
 
 	deleteFiles()
 	print("Programa iniciado")
-	reproduzFig9()
+	print('Recomenda-se que o programa seja executado umas vez para cada topologia e algoritmo de roteamento.')
+	print('Ao finalizar o programa corretamente os processos serão encerrados evitando problemas em execuções futuras.')
+	print('')
 	raw_input("Pressione Enter para continuar...")
-	deleteFiles()
 
-	print('Devido as limitações computacionais, uma nova topologia com menos dispositivos será criada.')
-	raw_input("Pressione Enter para continuar...")
 
 	loopPrincipal = True
 	while loopPrincipal:
 		optionTp = menuTopology()
-		os.system('clear')
+		#os.system('clear')
 		if optionTp == 'jf':
 			while True:
 					try:
