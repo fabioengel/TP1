@@ -283,8 +283,8 @@ def start():
 			while True:
 					try:
 						numberSwitch = 20
-						numberPorts = 3
-						inter_switch_Links = 2 #degree
+						numberPorts = 4
+						inter_switch_Links = 3 #degree
 						numHosts = 3*numberSwitch
 						adjListFile = "rrg_%s_%s" % (inter_switch_Links, numberSwitch)
 						build_topology.initJfTopo(numberSwitch, inter_switch_Links,numHosts) # Cria topoogia Jellyfish e rotas usando ecmp e ksp
